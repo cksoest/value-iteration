@@ -78,5 +78,3 @@ class Grid:
         self.value_iteration(greedy=True)
         if verbose:
             self.print_greedy_policy()
-
-

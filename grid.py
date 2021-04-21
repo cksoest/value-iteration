@@ -1,5 +1,6 @@
 import numpy as np
 import copy
+import matplotlib.pyplot as plt
 from itertools import product
 
 
@@ -51,6 +52,12 @@ class Grid:
                 self.values[i][j] = max(v)
 
     def print_values(self):
+        z = self.values
+        z = z.tolist()
+        z.reverse()
+        plt.pcolormesh(z, cmap="Reds")
+        plt.title("Values of grid")
+        plt.show()
         for row in self.values:
             values = "|"
             for v in row:
@@ -60,6 +67,7 @@ class Grid:
         print("\n")
 
     def print_greedy_policy(self):
+        print("greedy-policy")
         for row in self.greedy_policy:
             actions = "|"
             for a in row:
@@ -68,10 +76,10 @@ class Grid:
                 actions += a
                 actions += "|"
             print(actions)
-        print("\n")
 
     def run(self, amount_iterations, verbose=False):
-        for _ in range(amount_iterations):
+        for i in range(amount_iterations):
+            print("iteration {}".format(i))
             self.value_iteration()
             if verbose:
                 self.print_values()
